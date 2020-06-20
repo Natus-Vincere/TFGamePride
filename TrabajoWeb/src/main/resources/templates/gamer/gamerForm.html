@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+
+<body>
+	<header th:replace="/login :: header"></header>
+	<div class="container">
+
+		<form th:action="@{/gamers/save}" th:object="${gamer}" method="post">
+			<div class="card">
+				<div class="card-header text-white bg-primary">Ingrese sus
+					datos</div>
+				<div class="card-body">
+
+					<div class="form-group row">
+						<label for="name" class="col-sm-2 col-form-label">Nombres</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{name}" class="form-control"
+								placeholder="ej: C&eacute;sar"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="lastName" class="col-sm-2 col-form-label">Apellidos</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{lastName}" class="form-control"
+								placeholder="ej: Cirilo"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="phone" class="col-sm-2 col-form-label">Celular</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{phone}" class="form-control"
+								placeholder="ej: 987625114"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="username" class="col-sm-2 col-form-label">Alias
+							de usuario</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{username}" class="form-control"
+								placeholder="ej: cesar20"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="password" class="col-sm-2 col-form-label">Contrase&ntilde;a</label>
+						<div class="col-sm-5">
+							<input type="password" th:field="*{password}"
+								class="form-control" placeholder="ej: cesar20#"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+						</div>
+					</div>
+					<p th:text="${info}" class="form-text text-danger"></p>
+					<div class="form-group row" align="center">
+						<div class="col-sm-11">
+							<p></p>
+							<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+							<a href="/" class="btn btn-danger">Cancelar</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<footer th:replace="/layout :: footer"></footer>
+
+</body>
+
+</html>

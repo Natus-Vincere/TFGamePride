@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+
+<body class="bg-secondary">
+	<header th:replace="/layout :: header"></header>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-primary">Datos</div>
+			<div class="card-body">
+				<form th:action="@{/lancenters/search}" method="get">
+					<div class="form-row align-items-center">
+						<div class="col-auto">
+							<Label class="sr-only" for="inputName">Nombre</Label> <input
+								id="inputName" type="text" class="form-control form-control-lg"
+								name="name" placeholder="Nombre de lan center">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary">Buscar</button>
+						</div>
+					</div>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th>Nombre de Lan Center</th>
+								<th>Tel&eacute;fono</th>
+								<th>Direccion</th>
+								<th>Distrito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="lancenter: ${lancenters}">
+								<td th:text="${lancenter.name}"></td>
+								<td th:text="${lancenter.phone}"></td>
+								<td th:text="${lancenter.address}"></td>
+								<td th:text="${lancenter.district}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="/layout :: footer"></footer>
+
+</body>
+
+</html>

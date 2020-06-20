@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+
+<body>
+	<header th:replace="/layout :: header"></header>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-primary">Torneos</div>
+			<div class="card-body">
+				<form th:action="@{/events/search}" method="get">
+					<div class="form-row align-items-center">
+						<div class="col-auto">
+							<Label class="sr-only" for="inputName">Nombre</Label> <input
+								id="inputName" type="text" class="form-control form-control-lg"
+								name="game" placeholder="Nombre del juego">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary">Buscar</button>
+						</div>
+					</div>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Juego</th>
+								<th>LanCenter</th>
+								<th>Bases del evento</th>
+								<th>Fecha de inicio</th>
+								<th>Numero de vacantes</th>
+								<th>Costo de inscripcion</th>
+								<th>Estado</th>
+								<th>Recompensa</th>
+								<th>Foto</th>
+								<th>Ver</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="event:${events}">
+								<td th:text="${event.id}"></td>
+								<td th:text="${event.name}"></td>
+								<td th:text="${event.game}"></td>
+								<td th:text="${event.lancenterId.name}"></td>
+								<td th:text="${event.bases}"></td>
+								<td th:text="${event.startedAt}"></td>
+								<td th:text="${event.vacancy}"></td>
+								<td th:text="${event.costInscription}"></td>
+								<td th:text="${event.status}"></td>
+								<td th:text="${event.reward}"></td>
+								<td th:text="${event.photo}"></td>
+								<td><a th:href="@{'/gamers/new/' + ${event.id}}"
+								class="btn btn-primary">Inscribirse</a>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="/layout :: footer"></footer>
+
+</body>
+
+</html>
