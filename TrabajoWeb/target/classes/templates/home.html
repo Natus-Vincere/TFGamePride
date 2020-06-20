@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body class="bg-secondary">
+	<header th:replace="layout :: header"></header>
+
+	<div align="center">
+		<div class="container">
+			<div class="col-lg-8">
+				<div class="align text-left">
+					<h1 class="card-title text-white">Bienvenido</h1>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title text-white">Juegos para Consola</h5>
+					<p class="card-text text-white">Plataforma para crear y encontrar torneos en consola</p>
+					<p class="card-text">
+						<small class="text-muted"></small>
+					</p>
+					<img
+						src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2019/09/25/15694380175756.jpg"
+						class="card-img-top">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card bg-secondary">
+		<div align="center">
+			<div class="col-lg-6">
+				<div class="card-body">
+					<h5 class="card-title text-white">Juegos para PC</h5>
+					<p class="card-text text-white">Plataforma para crear y encontrar torneos en PC.</p>
+				</div>
+				<img src="https://i.blogs.es/b67f0e/portada/450_1000.jpg"
+					class="card-img-top">
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

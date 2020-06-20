@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+
+<body>
+	<header th:replace="/layout :: header"></header>
+	<div class="container">
+		<form th:action="@{/events/save}" th:object="${event}" method="post">
+			<div class="card">
+				<div class="card-header text-white bg-primary">Ingrese los
+					datos del torneo</div>
+				<div class="card-body">
+
+					<div class="form-group row">
+						<label for="inputName" class="col-sm-2 col-form-label">Nombre
+							del torneo</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{name}" class="form-control"
+								placeholder="ej: Evento"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputGame" class="col-sm-2 col-form-label">Juego</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{game}" class="form-control"
+								placeholder="ej: Dota 2"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('game')}" th:errors="*{game}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputlan" class="col-sm-2 col-form-label">Lan
+							Center</label>
+						<div class="col-sm-5">
+							<select class="custom-select custom-select-sm"
+								th:field="*{lancenterId}">
+								<option th:each="lancenter : ${lancenters}"
+									th:value="${lancenter.id}" th:utext="${lancenter.name}" />
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputDate" class="col-sm-2 col-form-label">Fecha
+							de inicio</label>
+						<div class="col-sm-6">
+							<input type="date" th:field="*{startedAt}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('startedAt')}" th:errors="*{startedAt}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputVacancy" class="col-sm-2 col-form-label">N&uacute;mero
+							de vacantes</label>
+						<div class="col-sm-5">
+							<input type="number" th:field="*{vacancy}" class="form-control"
+								placeholder="ej: 30" th:errorclass="'form-control alert-danger'" />
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('vacancy')}" th:errors="*{vacancy}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputCost" class="col-sm-2 col-form-label">Costo
+							de inscripci&oacute;n</label>
+						<div class="col-sm-5">
+							<input type="number" class="form-control" id="inputCost"
+								step=".01" placeholder="20.00" th:field="*{costInscription}"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('costInscription')}"
+								th:errors="*{costInscription}"></small>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputBases">Bases del torneo</label>
+						<textarea class="col-sm-7 form-control" id="inputBases" rows="4"
+							th:field="*{bases}" placeholder="ej: Lan Center"
+							th:errorclass="'form-control alert-danger'">
+						</textarea>
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('bases')}" th:errors="*{bases}"></small>
+					</div>
+					<div class="form-group row">
+						<label for="inputReward" class="col-sm-2 col-form-label">Premio</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{reward}" class="form-control"
+								placeholder="ej: Dota 2"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('reward')}" th:errors="*{reward}"></small>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Foto del evento</label> <input
+							type="file" class="form-control-file" th:field="*{photo}"
+							th:errorclass="'form-control alert-danger'"
+							id="exampleFormControlFile1"><small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}"></small>
+					</div>
+
+					<div class="form-group row" align="center">
+						<div class="col-sm-11">
+							<p></p>
+							<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+							<a href="/events/list" class="btn btn-danger">Cancelar</a>
+						</div>
+					</div>
+					<p th:text="${info}" class="form-text text-danger"></p>
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<footer th:replace="/layout :: footer"></footer>
+
+</body>
+
+</html>

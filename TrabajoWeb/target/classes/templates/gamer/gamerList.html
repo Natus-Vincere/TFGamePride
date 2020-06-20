@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<header th:fragment="header">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarTogglerDemo01"
+				aria-controls="navbarTogglerDemo01" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse">
+				<a class="navbar-brand" th:href="@{/}">GamePride</a>
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link text-white" 
+						th:href="@{/lancenters/create}">Lan Center</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						th:href="@{/events/new}">Torneos</a></li>
+					<li class="nav-item"><a class="nav-link text-white" th:each="gamer: ${gamers}"
+						th:href="@{'/gamers/profile/' + ${gamer.id}}">Perfil</a></li>
+				</ul>
+				<ul class="navbar-nav navbar-right">
+
+					<li class="dropdown show"><a
+						class="btn btn-outline-primary dropdown-toggle" href="#"
+						role="button" id="dropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <span
+							sec:authentication="name"></span>
+					</a>
+
+						<div class="dropdown-menu dropdown-menu-right">
+							<form id="profileForm"
+								th:action="@{'/gamers/profile/' + ${gamer.id}}">
+								<button class="dropdown-item"
+									onclick="document.getElementById('profileForm').submit();"
+									type="submit">Perfil</button>
+							</form>
+							<form id="logoutForm" th:action="@{/logout}" method="post">
+								<button class="dropdown-item"
+									onclick="document.getElementById('logoutForm').submit();"
+									type="submit">Cerrar Sesion</button>
+							</form>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}"></div>
+		<div class="alert alert-info" th:if="${info != null}"
+			th:text="${info}"></div>
+	</header>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-primary">Datos</div>
+			<div class="card-body">
+				<form th:action="@{/gamers/search}" method="get">
+					<div class="form-row align-items-center">
+						<div class="col-auto">
+							<Label class="sr-only" for="inputName">Nombre</Label> <input
+								id="inputName" type="text" class="form-control form-control-lg"
+								name="name" placeholder="Nombre de usuario">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary">Buscar</button>
+						</div>
+					</div>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Alias</th>
+								<th>Tel&eacute;fono</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="gamer: ${gamers}">
+								<td th:text="${gamer.name}">
+								<td th:text="${gamer.lastName}">
+								<td th:text="${gamer.username}">
+								<td th:text="${gamer.phone}">
+								<td><a th:href="@{'/gamers/profile/' + ${gamer.id}}"
+									class="btn btn-primary">Detalle</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="/layout :: footer"></footer>
+
+</body>
+
+</html>

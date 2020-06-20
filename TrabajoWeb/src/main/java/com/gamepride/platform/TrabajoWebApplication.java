@@ -25,7 +25,7 @@ public class TrabajoWebApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String...args) throws Exception{
-		String password="cesar20";
+		String password="carlos20";
 		for(int i=0;i<2;i++) {
 			String bcryptPassword=passwordEncoder.encode(password);
 			System.out.println(bcryptPassword);
