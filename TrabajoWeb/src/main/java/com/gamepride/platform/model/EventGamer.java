@@ -22,6 +22,7 @@ public class EventGamer{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@Column(name="inscripted_at",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date inscriptedAt;
